@@ -52,6 +52,11 @@ namespace mongo {
                 StringData data( _buffer + _position, len );
                 _position += len + 1;
 
+                if ( sz <= 0 ) {
+                    // must have NULL at the very least
+                    return Status( ErrorCodes::InvalidBSON, "invalid bson");
+                }
+
                 if ( out ) {
                     *out = data;
                 }
