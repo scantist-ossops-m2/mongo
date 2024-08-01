@@ -78,6 +78,11 @@ namespace mongo {
                     return makeError("invalid bson", _idElem);
                 }
 
+                if ( sz <= 0 ) {
+                    // must have NULL at the very least
+                    return makeError("invalid bson", _idElem);
+                }
+
                 if ( out ) {
                     *out = StringData( _buffer + _position, sz );
                 }
